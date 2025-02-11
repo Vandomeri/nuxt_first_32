@@ -13,3 +13,19 @@ model users {
   email    String @unique
   password String
 }
+
+model sofas {
+  id             Int           @id @default(autoincrement())
+  title          String
+  price          Int
+  material       String
+  sofas_colors   sofas_colors? @relation(fields: [sofas_colorsId], references: [id])
+  sofas_colorsId Int?
+}
+
+model sofas_colors {
+  id        Int     @id @default(autoincrement())
+  name      String
+  hex_color String
+  sofas     sofas[]
+}
